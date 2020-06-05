@@ -1,25 +1,33 @@
-# Deno REST API
-
-> This is a REST API using Deno, Oak and PostgreSQL
-
-Be sure to install [https://www.postgresql.org/](postgreSQL) and edit the "config.ts" file with your own credentials
-
-* [Deno Crash Course Video](https://www.youtube.com/watch?v=NHHhiqwcfRM)
-* [Deno & PostgreSQL Video](https://youtu.be/KuaI6mphFNc)
+# Deno API Server
+A simple API server using Deno, Oak and MySQL
 
 ## Run
+Create a mysql database and create a table named ```users``` in it.
 
+Here is the SQL.
+
+```sql
+  CREATE TABLE users (
+      id int(11) NOT NULL AUTO_INCREMENT,
+      name varchar(100) NOT NULL,
+      created_at timestamp not null default current_timestamp,
+      PRIMARY KEY (id)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
-# This project uses Denon
-deno start
+
+Note: Make sure mysql credentials has no password, it is a WIP in a deno MySQL driver.
+
+Run the Deno server.
+```
+ deno run --allow-net --allow-env server.ts
 ```
 
 ## Routes
 
 ```
-GET      /api/v1/products
-GET      /api/v1/products/:id
-POST     /api/v1/products
-PUT      /api/v1/products/:id
-DELETE   /api/v1/products/:id
+GET      /api/v1/users
+GET      /api/v1/users/:id
+POST     /api/v1/users
+PUT      /api/v1/users/:id
+DELETE   /api/v1/users/:id
 ```
