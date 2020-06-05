@@ -138,11 +138,11 @@ const deleteUsers = async ({ params, response }: { params: { id: string }, respo
         try {
             const result = await client.query("DELETE FROM users WHERE ??=?", ["id", params.id])
 
+            response.status = 200
             response.body = {
                 success: true,
                 msg: `Users with id ${params.id} has been deleted`
             }
-            response.status = 204
         } catch (err) {
             response.status = 500
                 response.body = {
